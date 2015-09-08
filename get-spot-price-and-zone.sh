@@ -1,0 +1,1 @@
+aws --profile adt-dev --output json --region us-east-1 ec2 describe-spot-price-history --instance-type $1 --product-description "Linux/UNIX" --no-paginate --start-time `date +20%y-%m-%dT%H:%M:%SZ` | jq '.SpotPriceHistory[0:] | map(select(.AvailabilityZone!="us-east-1e")) | sort_by(.SpotPrice) | .[0].AvailabilityZone,.[0].SpotPrice'
