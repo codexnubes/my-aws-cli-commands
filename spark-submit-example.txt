@@ -1,5 +1,10 @@
+#!/usr/bin/env bash
+
+scp -i ~/.aws/myidentity.pem some.jar hadoop@ec2-54-227-122-84.compute-1.amazonaws.com: 
+
+ssh -i ~/.aws/myidentity.pem some.jar hadoop@ec2-54-227-122-84.compute-1.amazonaws.com:
+
 spark-submit --executor-memory 20G \
---total-executor-cores 16 \
 --class com.userreport.job.exports.ConvertParquetToCsvJob \
 --master spark://ec2-54-227-122-84.compute-1.amazonaws.com:7077 \
 prediction-sparkjobs.jar \

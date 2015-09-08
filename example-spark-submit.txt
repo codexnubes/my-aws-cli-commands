@@ -1,0 +1,10 @@
+scp -i ~/myidentity.pem myapplication.jar hadoop@cluster-host: 
+
+ssh -i ~/myidentity.pem hadoop@cluster-host:
+
+spark-submit --executor-memory 20G \
+--total-executor-cores 16 \
+--class my.spark.Application \
+--master spark://127.0.0.1:7077 \
+myapplication.jar \
+42

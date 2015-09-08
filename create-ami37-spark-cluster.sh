@@ -20,9 +20,9 @@ aws emr --output "json" --region us-east-1 create-cluster \
   Name=WorkerGroup,InstanceGroupType=CORE,InstanceCount="${WORKER_COUNT}",InstanceType="${INSTANCE_TYPE}",BidPrice="${BID_PRICE}" \
 --visible-to-all-users \
 --no-auto-terminate \
---log-uri "s3://adt-adhoc-dev/kostas/logs/" \
+--log-uri "s3://adt-adhoc/kostas/logs/" \
 --bootstrap-actions \
-  Name=InstallSpark,Path=s3://support.elasticmapreduce/spark/install-spark,Args=["-v","1.4.0.b"] \
-  Name=ConfigureSpark,Path=s3://support.elasticmapreduce/spark/configure-spark.bash,Args=["spark.executor.memory=21g","spark.driver.memory=21g","spark.local.dir=/mnt/spark,/mnt1/spark"] \
+  Name=InstallSpark,Path=s3://support.elasticmapreduce/spark/install-spark,Args=["-v","1.4.0b"] \
+  Name=ConfigureSpark,Path=s3://support.elasticmapreduce/spark/configure-spark.bash,Args=["spark.executor.memory=11g","spark.driver.memory=2g","spark.local.dir=/mnt/spark,/mnt1/spark"] \
   Name=StartSpark,Path=s3://support.audiencereport/spark/start-spark-ami-3.7.0.sh \
-  Name=SyncExecutorLogs,Path=s3://support.audiencereport/spark/sync-executor-logs.sh,Args=["-l","s3://adt-adhoc-dev/kostas/logs/"]
+  Name=SyncExecutorLogs,Path=s3://support.audiencereport/spark/sync-executor-logs.sh,Args=["-l","s3://adt-adhoc/kostas/logs/"]
